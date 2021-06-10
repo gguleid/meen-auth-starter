@@ -6,9 +6,9 @@ const User = require('../models/user.js');
 const session = require('express-session');
 
 // New (login page)
-// sessionsRouter.get('/', (req, res) => {
-//     res.send('login page')
-// })
+sessionsRouter.get('/new', (req, res) => {
+	res.render('sessions/new.ejs')
+})
 
 // Delete (logout route)
 sessionsRouter.delete('/', (req, res) => {
