@@ -15,15 +15,19 @@ mongoose.connect(process.env.DATABASE_URL, {
 
 // Middleware
 app.use(express.urlencoded({extended:true}));
-app.use(session({
-    secret: process.env.SECERT,
-    resave: false,
-    saveUninitialized:false
-}));
+app.use(
+    session({
+        secret: process.env.SECRET,
+        resave: false,
+        saveUninitialized: false
+    }));
 
 // Routes/Controllers
 const userController = require('./controllers/users');
 app.use('/users', userController);
+
+const sessionController = require('./controllers/sessions');
+app.use('/sessions', sessionController);
 
 // Database Connection Error / Success
 const db = mongoose.connection;
