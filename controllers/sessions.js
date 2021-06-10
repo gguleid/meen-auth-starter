@@ -3,6 +3,7 @@ const express = require('express');
 const bcryot = require('bcrypt');
 const sessionsRouter = express.Router();
 const User = require('../models/user.js');
+const session = require('express-session');
 
 // New (login page)
 // sessionsRouter.get('/', (req, res) => {
@@ -10,7 +11,11 @@ const User = require('../models/user.js');
 // })
 
 // Delete (logout route)
-
+sessionsRouter.delete('/', (req, res) => {
+    req.session.destroy((error) => {
+        res.redirect('/');
+    });
+})
 
 // Create (login route - works when login page form is submitted)
 sessionsRouter.post('/', (req, res) => {
